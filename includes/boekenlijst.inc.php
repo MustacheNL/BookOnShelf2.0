@@ -3,22 +3,29 @@ require("private/connection.php");  /*DB info & connectie*/
 echo "<h2>Hier komt een lijst met boeken die u kunt huren</h2>";
 
 /* Prepared de SQL query en voert de query uit */
-$result = $stmt = $conn->prepare("SELECT * FROM books");
+$result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0'");
 $stmt->execute();
 
+/* Zet het boek op gehuurd */
 if(isset($_GET['hire'])) {
     $row = $result->fetch(PDO::FETCH_ASSOC);
-    $id = $row['id'];
-    $stmt = $conn->prepare("UPDATE `books` SET `hired` = 1 WHERE `id` = $id");
+    $id = $_GET['hire'];
+    $stmt = $conn->prepare("UPDATE `books` SET `hired` = '1', hired_date = CURRENT_DATE WHERE `id` = $id");
     $stmt->execute();
-    echo "XD";
-} else {
-    echo "NO XD";
+    header('location: index.php?page=boekenlijst&msg=success');
+}
+
+if(isset($_GET['msg']) && $_GET['msg'] == "success") {
+    echo "<div class=\"alert alert-success\" role=\"alert\">
+    <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>
+    <span class=\"sr-only\">Success:</span>
+    Het boek is succesvol aan je geleend!
+    </div>";
 }
 
 /* Maakt de table aan */
 echo "
-<table>
+<table class='table-responsive, table-bordered'>
     <tr>
         <th><b>Boeknaam</b></th> 
         <th><b>Auteur</b></th> 
