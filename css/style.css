@@ -1,11 +1,8 @@
 
-#jumbotron {
-    margin: 0 auto;
-    background-color: yellowgreen;
-}
-ul {
+ol, ul {
+    margin-bottom: 0;
     list-style-type: none;
-    margin: 0 auto;
+
     padding: 0;
     overflow: hidden;
     background-color: #333;
