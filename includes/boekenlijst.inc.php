@@ -52,3 +52,4 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)) {
 }
 
 echo "</table>";
+?>
