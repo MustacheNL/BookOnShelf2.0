@@ -47,7 +47,7 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)) {
         <td>$author</td>
         <td>$releasedate</td>
         <td>$info</td>
-        <td><a href=\"/index.php?page=boekenlijst&hire=$id\"> <button class='btn-default' type=\"submit\" form=\"form1\" value=\"$id\">Huren</button></a></td>
+        <td><a href=\"/index.php?page=boekenlijst&hire=$id\"> <button class='btn-default'  type=\"submit\" form=\"form1\" value=\"$id\"onclick=\"return confirm('weet je zeker dat je boek het boek $name wilt lenen?')\"><strong>$name huren</strong></button></a></td>
         </tr>";
 }
 
