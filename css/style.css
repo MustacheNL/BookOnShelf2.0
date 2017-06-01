@@ -1,3 +1,4 @@
+
 #jumbotron {
     margin: 0 auto;
     background-color: yellowgreen;
@@ -25,4 +26,7 @@ li a {
 /* Change the link color to #111 (black) on hover */
 li a:hover {
     background-color: #111;
+}
+.book-table {
+    border: 1px solid black;
 }
