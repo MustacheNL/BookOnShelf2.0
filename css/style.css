@@ -30,3 +30,12 @@ li a:hover {
 .book-table {
     border: 1px solid black;
 }
+.nav a.selected:link, a.selected:visited{
+    color: blue;
+
+}
+.nav {
+    margin:0 auto;
+    padding:0;
+    overflow: hidden;
+}
