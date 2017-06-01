@@ -24,7 +24,7 @@ if (isset($_GET['page'])) {
         </div>
 
         <footer class="footer">
-            BookOnShelf version 2.0 - Patrick Coughing
+            BookOnShelf version 2.0 - Made by Nyma & Jurgen. ©2017
         </footer>
     </body>
 
