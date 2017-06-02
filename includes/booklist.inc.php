@@ -16,10 +16,10 @@ if(isset($_GET['hire'])) {
 echo "
 <table class='table-responsive, table-bordered'>
     <tr>
-        <th><a href=\"/index.php?page=booklist&name\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Boeknaam</b></th> 
-        <th><a href=\"/index.php?page=booklist&author\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Auteur</b></th> 
-        <th><a href=\"/index.php?page=booklist&date\" data-toggle=\"tooltip\" title=\"Sorteren op datum\"><b>Publicatiedatum</b></th> 
-        <th><a href=\"/index.php?page=booklist&info\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Informatie</b></th>
+        <th><a href=\"?page=booklist&name\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Boeknaam</b></th> 
+        <th><a href=\"?page=booklist&author\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Auteur</b></th> 
+        <th><a href=\"?page=booklist&date\" data-toggle=\"tooltip\" title=\"Sorteren op datum\"><b>Publicatiedatum</b></th> 
+        <th><a href=\"?page=booklist&info\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Informatie</b></th>
     </tr>";
 
 /* Sorteert de boeken op waar de gebruiker geklikt heeft */
@@ -55,7 +55,7 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)) {
         <td>$author</td>
         <td>$releasedate</td>
         <td>$info</td>
-        <td><a href=\"/index.php?page=booklist&hire=$id\"> <button class='btn-default'type=\"submit\" form=\"form1\" value=\"$id\" onclick=\"return confirm('weet je zeker dat je het boek wilt lenen?')\"><strong>$name huren</strong></button></a></td>
+        <td><a href=\"?page=booklist&hire=$id\"> <button class='btn-default'type=\"submit\" form=\"form1\" value=\"$id\" onclick=\"return confirm('Weet je zeker dat je dit boek wilt lenen? $name. Door: $author')\"><strong>$name huren</strong></button></a></td>
         </tr>";
 }
 
