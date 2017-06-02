@@ -9,17 +9,17 @@ if(isset($_GET['hire'])) {
     $id = $_GET['hire'];
     $stmt = $conn->prepare("UPDATE `books` SET `hired` = '1', hired_date = CURRENT_DATE WHERE `id` = $id");
     $stmt->execute();
-    header('location: index.php?page=boekenlijst&msg=success');
+    header('location: index.php?page=booklist&msg=success');
 }
 
 /* Maakt de table aan met sorteer op href en tooltips */
 echo "
 <table class='table-responsive, table-bordered'>
     <tr>
-        <th><a href=\"/index.php?page=boekenlijst&name\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Boeknaam</b></th> 
-        <th><a href=\"/index.php?page=boekenlijst&author\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Auteur</b></th> 
-        <th><a href=\"/index.php?page=boekenlijst&date\" data-toggle=\"tooltip\" title=\"Sorteren op datum\"><b>Publicatiedatum</b></th> 
-        <th><a href=\"/index.php?page=boekenlijst&info\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Informatie</b></th>
+        <th><a href=\"/index.php?page=booklist&name\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Boeknaam</b></th> 
+        <th><a href=\"/index.php?page=booklist&author\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Auteur</b></th> 
+        <th><a href=\"/index.php?page=booklist&date\" data-toggle=\"tooltip\" title=\"Sorteren op datum\"><b>Publicatiedatum</b></th> 
+        <th><a href=\"/index.php?page=booklist&info\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Informatie</b></th>
     </tr>";
 
 /* Sorteert de boeken op waar de gebruiker geklikt heeft */
@@ -54,7 +54,7 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)) {
         <td>$author</td>
         <td>$releasedate</td>
         <td>$info</td>
-        <td><a href=\"/index.php?page=boekenlijst&hire=$id\"> <button class='btn-default'type=\"submit\" form=\"form1\" value=\"$id\" onclick=\"return confirm('weet je zeker dat je het boek wilt lenen?')\"><strong>$name huren</strong></button></a></td>
+        <td><a href=\"/index.php?page=booklist&hire=$id\"> <button class='btn-default'type=\"submit\" form=\"form1\" value=\"$id\" onclick=\"return confirm('weet je zeker dat je het boek wilt lenen?')\"><strong>$name huren</strong></button></a></td>
         </tr>";
 }
 

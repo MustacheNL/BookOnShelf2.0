@@ -63,5 +63,3 @@ $row = $result->fetch(PDO::FETCH_ASSOC);
 </main>
 <?php
 ?>
-</body>
-</html>
