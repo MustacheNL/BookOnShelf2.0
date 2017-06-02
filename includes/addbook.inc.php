@@ -1,6 +1,5 @@
 <h2>Hier kunt u boeken toevoegen</h2>
 <?php
-require("private/connection.php");
 $result = $stmt = $conn->prepare("SELECT * FROM books");
 $row = $result->fetch(PDO::FETCH_ASSOC);
 ?>
