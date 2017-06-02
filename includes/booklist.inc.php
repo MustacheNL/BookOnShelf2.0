@@ -1,8 +1,8 @@
 <?php
-require("private/connection.php");  /*DB info & connectie*/
+require("private/connection.php");  /*  PDO connectie */
 echo "<h2>Hier onder ziet u boeken die beschikbaar zijn</h2>";
 
-/* Zet het boek op gehuurd */
+/* Kijkt of de GET hire bevat en zet het boeken op gehuurd */
 if(isset($_GET['hire'])) {
     $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0'");
     $row = $result->fetch(PDO::FETCH_ASSOC);
@@ -21,7 +21,8 @@ echo "
         <th><a href=\"/index.php?page=boekenlijst&date\" data-toggle=\"tooltip\" title=\"Sorteren op datum\"><b>Publicatiedatum</b></th> 
         <th><a href=\"/index.php?page=boekenlijst&info\" data-toggle=\"tooltip\" title=\"Sorteren op alfabetische volgorde\"><b>Informatie</b></th>
     </tr>";
-//sorteer systeem
+
+/* Sorteert de boeken op waar de gebruiker geklikt heeft */
 if (isset($_GET['name'])){
     $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0' ORDER BY name");
     $info->bindValue('info', (int) PDO::PARAM_INT);
@@ -40,7 +41,6 @@ if (isset($_GET['name'])){
     $stmt->execute();
 }
 
-
 /* De while loop die de boeken weergeeft op de pagina */
 while($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $id = $row['id'];
@@ -58,7 +58,8 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)) {
         <td><a href=\"/index.php?page=boekenlijst&hire=$id\"> <button class='btn-default'type=\"submit\" form=\"form1\" value=\"$id\" onclick=\"return confirm('weet je zeker dat je het boek wilt lenen?')\"><strong>$name huren</strong></button></a></td>
         </tr>";
 }
-//succes bericht voor boek lenen
+
+/* Succes bericht dat het boek is geleend! */
 if(isset($_GET['msg']) && $_GET['msg'] == "success") {
     echo "<div class=\"alert alert-success\" role=\"alert\">
     <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>
@@ -66,5 +67,6 @@ if(isset($_GET['msg']) && $_GET['msg'] == "success") {
     Het boek is succesvol aan je geleend!
     </div>";
 }
+
 echo "</table>";
 ?>
