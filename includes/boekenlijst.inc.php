@@ -23,7 +23,8 @@ echo "
     </tr>";
 //sorteer systeem
 if (isset($_GET['name'])){
-    $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0' ORDER BY name");;
+    $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0' ORDER BY name");
+    $info->bindValue('info', (int) PDO::PARAM_INT);
     $stmt->execute();
 } elseif(isset($_GET['author'])) {
     $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0'ORDER BY author");
