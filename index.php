@@ -20,17 +20,18 @@ if (isset($_GET['page'])) {
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     </head>
 
-        <body>
-            <?php include 'includes/navbar.inc.php'?>
-            <div class="jumbotron">
-            <?php include 'includes/'.$page.'.inc.php'?>
-            </div>
+    <body>
+        <?php if($page != "index") {
+            include "includes/navbar.inc.php";
+        } ?>
+        <div class="jumbotron">
+            <?php include "includes/$page.inc.php"; ?>
+        </div>
 
-            <footer class="footer">
-                BookOnShelf version 2.0 - Made by Nyma & Jurgen. ©2017
-            </footer>
-        </body>
-
+        <footer class="footer">
+            BookOnShelf version 2.0 - Made by Nyma & Jurgen. ©2017
+        </footer>
+    </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </html>
