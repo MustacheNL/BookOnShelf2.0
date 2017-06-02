@@ -25,7 +25,6 @@ echo "
 /* Sorteert de boeken op waar de gebruiker geklikt heeft */
 if (isset($_GET['name'])){
     $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0' ORDER BY name");
-    $info->bindValue('info', (int) PDO::PARAM_INT);
     $stmt->execute();
 } elseif(isset($_GET['author'])) {
     $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0'ORDER BY author");
@@ -40,14 +39,15 @@ if (isset($_GET['name'])){
     $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0'");
     $stmt->execute();
 }
-
+mb_strimwidth("Hello World", 0, 10, "-yahooo!-");
 /* De while loop die de boeken weergeeft op de pagina */
 while($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $id = $row['id'];
     $name = $row['name'];
     $author = $row['author'];
     $releasedate = $row['releasedate'];
-    $info = $row['info'];
+    $info = mb_strimwidth($row['info'], 0, 100, "...");
+
 
     /* Geeft structuur aan de lijst */
     echo "<tr>
