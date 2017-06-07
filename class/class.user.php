@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 class USER {
     private $conn;
     public function __construct() {
