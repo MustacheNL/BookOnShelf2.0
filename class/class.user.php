@@ -1,5 +1,4 @@
 <?php
-
 class USER
 {
     private $conn;
@@ -13,7 +12,7 @@ class USER
         $stmt = $this->conn->prepare($sql);
         return $stmt;
     }
-    
+
     public function register($fname, $lname, $uname, $umail, $upass)
     {
         try {
@@ -71,5 +70,4 @@ VALUES(:uname, :umail, :upass)");
         return true;
     }
 }
-
 ?>

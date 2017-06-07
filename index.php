@@ -1,11 +1,15 @@
 <?php
 require("private/connection.php");  /*  PDO connectie */
 require("class/class.user.php");
-$auth_user = new USER();
 
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
+    $page = "index";
+}
+
+$user = NEW USER();
+if(!$page = "index" && !$user->is_loggedin()) {
     $page = "index";
 }
 ?>
