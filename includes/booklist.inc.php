@@ -3,15 +3,15 @@ echo "<h2>Hier onder ziet u boeken die beschikbaar zijn</h2>";
 
 /* Sorteert de boeken op waar de gebruiker geklikt heeft */
 if (isset($_GET['name'])){
-    $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0' ORDER BY name");
+    $stmt = $auth_user->runQuery("SELECT * FROM books WHERE hired = '0' ORDER BY name");
 } elseif(isset($_GET['author'])) {
-    $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0'ORDER BY author");
+    $stmt = $auth_user->runQuery("SELECT * FROM books WHERE hired = '0'ORDER BY author");
 } elseif(isset($_GET['date'])) {
-    $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0'ORDER BY releasedate");
+    $stmt = $auth_user->runQuery("SELECT * FROM books WHERE hired = '0'ORDER BY releasedate");
 } elseif(isset($_GET['info'])) {
-    $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0'ORDER BY info");
+    $stmt = $auth_user->runQuery("SELECT * FROM books WHERE hired = '0'ORDER BY info");
 } else {
-    $result = $stmt = $conn->prepare("SELECT * FROM books WHERE hired = '0'");
+    $stmt = $auth_user->runQuery("SELECT * FROM books WHERE hired = '0'");
 }
 $stmt->execute();
 
@@ -35,7 +35,7 @@ echo "
     </tr>";
 
 /* De while loop die de boeken weergeeft op de pagina */
-while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $id = $row['id'];
     $name = $row['name'];
     $author = $row['author'];
