@@ -1,6 +1,7 @@
 <?php
 session_start();
 require("private/connection.php");  /*  PDO connectie */
+$auth_user = new USER();
 
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
