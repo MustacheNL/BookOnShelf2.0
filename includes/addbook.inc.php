@@ -1,14 +1,56 @@
 <h2>Hier kunt u boeken toevoegen</h2>
 <?php
-$result = $stmt = $conn->prepare("SELECT * FROM books");
+include 'class/class.session.php';
+$auth_user = new USER();
+$user_id = $_SESSION['user_session'];
+$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
+$stmt->execute(array(":user_id" => $user_id));
+$user = new USER();
+$userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+$result = $stmt = $auth_user->runQuery("SELECT * FROM books");
 $row = $result->fetch(PDO::FETCH_ASSOC);
+
+
+if (isset($_POST['btn-signup'])) {
+    $bname = strip_tags($_POST['txt_bname']);
+    $bauthor = strip_tags($_POST['txt_bauthor']);
+    $breleasedate = strip_tags($_POST['txt_breleasedate']);
+    $binfo = strip_tags($_POST['txt_binfo']);
+    if ($bname == "" || $bauthor == "" || $breleasedate == "" || $binfo == "") {
+        $error[] = "Je hebt niet alle velden ingevuld!";
+    } else {
+        try {
+            $stmt = $auth_user->runQuery("SELECT name, author, info FROM books WHERE name=:bname OR author=:bauthor OR info=:binfo");
+            $stmt->execute(array(':bname' => $bname, ':bauthor' => $bauthor, ':binfo' => $binfo));
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row['name'] == $bname) {
+                $error[] = "Deze naam bestaat al!";
+            } else {
+                if ($user->addBook($bname, $bauthor, $breleasedate, $binfo)) {
+                    header('location: ../index.php?page=addbook&msg=success');
+                }
+
+            }
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+}
+if(isset($_GET['msg']) && $_GET['msg'] == "success") {
+    echo "<div class=\"alert alert-success\" role=\"alert\">
+    <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>
+    <span class=\"sr-only\">Success:</span>
+    Het boek is succesvol toegevoegd!
+    </div>"; }
 ?>
+
         <div class="container">
             <div class="signin-form">
                 <div class="container">
                     <form method="post" class="form-signin">
                         <h4 class="form-signin-heading">Voeg een boek toe</h4>
-                        <hr/>
                         <?php
                         if (isset($error)) {
                             foreach ($error as $error) {
@@ -30,19 +72,19 @@ $row = $result->fetch(PDO::FETCH_ASSOC);
                         <?php } ?>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="sample1" name="txt_name">
+                            <input class="mdl-textfield__input" type="text" id="sample1" name="txt_bname">
                             <label class="mdl-textfield__label" for="sample1">Boek naam...</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="sample1" name="txt_author">
+                            <input class="mdl-textfield__input" type="text" id="sample1" name="txt_bauthor">
                             <label class="mdl-textfield__label" for="sample1">Boek auteur...</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="sample1" name="txt_releasedate">
-                            <label class="mdl-textfield__label" for="sample1">Boek uitgavedatum...</label>
+                            <input class="mdl-textfield__input" type="text" id="sample1" name="txt_breleasedate">
+                            <label class="mdl-textfield__label" for="sample1">Uitgave datum...</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="sample1" name="txt_info">
+                            <input class="mdl-textfield__input" type="text" id="sample1" name="txt_binfo">
                             <label class="mdl-textfield__label" for="sample1">Boek info...</label>
                         </div>
 

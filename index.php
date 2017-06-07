@@ -1,5 +1,4 @@
 <?php
-session_start();
 require("private/connection.php");  /*  PDO connectie */
 require("class/class.user.php");
 $auth_user = new USER();
