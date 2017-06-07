@@ -1,6 +1,5 @@
 <?php
-class USER
-{
+class USER {
     private $conn;
     public function __construct() {
         $database = new Database();
@@ -28,6 +27,21 @@ VALUES(:uname, :umail, :upass)");
 
             return $stmt;
         } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function addBook($bname,$bauthor,$breleasedate,$binfo) {
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO books(name, author, releasedate, info) 
+                                                           VALUES(:bname, :bauthor, :breleasedate, :binfo)");
+            $stmt->bindparam(":bname", $bname);
+            $stmt->bindparam(":bauthor", $bauthor);
+            $stmt->bindparam(":breleasedate", $breleasedate);
+            $stmt->bindparam(":binfo", $binfo);
+            $stmt->execute();
+            return $stmt;
+        } catch(PDOException $e) {
             echo $e->getMessage();
         }
     }

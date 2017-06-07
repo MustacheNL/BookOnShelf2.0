@@ -1,13 +1,9 @@
 <h2>Hier kunt u boeken toevoegen</h2>
 <?php
-require 'class/class.user.php';
+require 'class/class.session.php';
 
 $auth_user = new USER();
-$user_id = $_SESSION['user_session'];
-$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
-$stmt->execute(array(":user_id" => $user_id));
 $user = new USER();
-$userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 $result = $stmt = $auth_user->runQuery("SELECT * FROM books");
 $row = $result->fetch(PDO::FETCH_ASSOC);
 

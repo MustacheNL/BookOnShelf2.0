@@ -1,4 +1,5 @@
 <?php
+include ('class/class.session.php');
 $auth_user = new USER();
 echo "<h2>Hier onder ziet u boeken die beschikbaar zijn</h2>";
 
