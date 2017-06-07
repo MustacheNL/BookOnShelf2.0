@@ -1,10 +1,12 @@
  <?php
+
+ $login = new USER();
  if(isset($_POST['btn-login'])) {
      $uname = strip_tags($_POST['txt_uname_email']);
      $umail = strip_tags($_POST['txt_uname_email']);
      $upass = strip_tags($_POST['txt_password']);
 
-     if($login->doLogin($uname,$umail,$upass)) {
+     if($login->login($uname,$umail,$upass)) {
          $login->redirect('?page=home');
      } elseif($uname == "") {
          $error = "Provide a username or email!";
