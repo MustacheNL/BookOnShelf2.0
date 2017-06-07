@@ -1,5 +1,5 @@
 <?php
-if(stristr($_SERVER['REQUEST_URI'], 'config.inc.php')){
+if(stristr($_SERVER['REQUEST_URI'], 'connection.php')){
     die("Wait a minute... who are you? You're not allowed to come here.");
 }
 
