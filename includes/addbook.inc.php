@@ -1,6 +1,7 @@
 <h2>Hier kunt u boeken toevoegen</h2>
 <?php
-include 'class/class.session.php';
+require 'class/class.user.php';
+
 $auth_user = new USER();
 $user_id = $_SESSION['user_session'];
 $stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
@@ -28,9 +29,7 @@ if (isset($_POST['btn-signup'])) {
                 if ($user->addBook($bname, $bauthor, $breleasedate, $binfo)) {
                     header('location: ../index.php?page=addbook&msg=success');
                 }
-
             }
-
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -54,7 +53,7 @@ if(isset($_GET['msg']) && $_GET['msg'] == "success") {
                             foreach ($error as $error) {
                                 ?>
                                 <span class="mdl-chip mdl-chip--contact">
-                                <span class="mdl-chip__contact mdl-color--red mdl-color-text--white">!</span>
+                                <span class="mdl-chip__contact mdl-color--red mdl-color-text--white"></span>
                                 <span class="mdl-chip__text"><?php echo $error; ?></span>
                             </span>
                                 <?php
@@ -78,7 +77,7 @@ if(isset($_GET['msg']) && $_GET['msg'] == "success") {
                             <label class="mdl-textfield__label" for="sample1">Boek auteur...</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="sample1" name="txt_breleasedate">
+                            <input placeholder="YYYY-MM-DD" max="*9l" class="mdl-textfield__input" type="date" id="sample1" name="txt_breleasedate">
                             <label class="mdl-textfield__label" for="sample1">Uitgave datum...</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
