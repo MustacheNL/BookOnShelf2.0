@@ -1,4 +1,5 @@
 <?php
+$auth_user = new USER();
 echo "<h2>Hier onder ziet u boeken die beschikbaar zijn</h2>";
 
 /* Sorteert de boeken op waar de gebruiker geklikt heeft */
@@ -14,7 +15,6 @@ if (isset($_GET['name'])){
     $stmt = $auth_user->runQuery("SELECT * FROM books WHERE hired = '0'");
 }
 $stmt->execute();
-
 /* Succes bericht dat het boek is geleend! */
 if(isset($_GET['msg']) && $_GET['msg'] == "success") {
     echo "<div class=\"alert alert-success\" role=\"alert\">

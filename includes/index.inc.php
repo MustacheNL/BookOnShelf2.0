@@ -1,5 +1,5 @@
  <?php
-
+session_start();
  $login = new USER();
  if(isset($_POST['btn-login'])) {
      $uname = strip_tags($_POST['txt_uname_email']);
@@ -26,6 +26,16 @@
 
  <body>
      <div class="container">
+         <div id="error">
+             <?php
+             if(isset($error)) {
+                 ?>
+                 <span class="mdl-chip mdl-chip--contact">
+                                    <span class="mdl-chip__contact mdl-color--red mdl-color-text--white">!</span>
+                                    <span class="mdl-chip__text"><?php echo $error; ?></span>
+                                </span>
+             <?php } ?>
+         </div>
          <form action="index.php" method="post">
              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                  <input class="mdl-textfield__input" type="text" id="sample1" name="txt_uname_email">
