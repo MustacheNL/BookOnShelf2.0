@@ -8,11 +8,11 @@ if (isset($_GET['page'])) {
     $page = "index";
 }
 
-$user = NEW USER();
-if(!$page = "index" && !$user->is_loggedin()) {
-    $page = "index";
-}
-?>
+//$user = NEW USER();
+//if(!$page = "index" && !$user->is_loggedin()) {
+//    $page = "index";
+//}
+//?>
 
 <!DOCTYPE html>
 <html>
