@@ -10,7 +10,6 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 $result = $stmt = $auth_user->runQuery("SELECT * FROM books");
 $row = $result->fetch(PDO::FETCH_ASSOC);
 
-
 if (isset($_POST['btn-signup'])) {
     $bname = strip_tags($_POST['txt_bname']);
     $bauthor = strip_tags($_POST['txt_bauthor']);
@@ -36,7 +35,6 @@ if (isset($_POST['btn-signup'])) {
             echo $e->getMessage();
         }
     }
-
 }
 if(isset($_GET['msg']) && $_GET['msg'] == "success") {
     echo "<div class=\"alert alert-success\" role=\"alert\">
