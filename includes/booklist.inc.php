@@ -1,4 +1,5 @@
 <?php
+session_start();
 include ('class/class.session.php');
 $auth_user = new USER();
 echo "<h2>Hier onder ziet u boeken die beschikbaar zijn</h2>";
@@ -16,6 +17,7 @@ if (isset($_GET['name'])){
     $stmt = $auth_user->runQuery("SELECT * FROM books WHERE hired = '0'");
 }
 $stmt->execute();
+
 /* Succes bericht dat het boek is geleend! */
 if(isset($_GET['msg']) && $_GET['msg'] == "success") {
     echo "<div class=\"alert alert-success\" role=\"alert\">
@@ -24,7 +26,8 @@ if(isset($_GET['msg']) && $_GET['msg'] == "success") {
     Het boek is succesvol aan je geleend!
     </div>";
 }
-/*succes bericht dat het boek is verwijderd*/
+
+/* Succes bericht dat het boek is verwijderd */
 if (isset($_GET['msg']) && $_GET['msg'] == "deleted") {
     echo "<div class=\"alert alert-success\" style='text-align: center' role=\"alert\">
     <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>
@@ -32,6 +35,7 @@ if (isset($_GET['msg']) && $_GET['msg'] == "deleted") {
     Het boek is succesvol verwijderd!
     </div>";
 }
+
 /* Maakt de table aan met sorteer op href en tooltips */
 echo "
 <div class='container'>

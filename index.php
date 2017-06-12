@@ -7,12 +7,7 @@ if (isset($_GET['page'])) {
 } else {
     $page = "index";
 }
-
-//$user = NEW USER();
-//if(!$page = "index" && !$user->is_loggedin()) {
-//    $page = "index";
-//}
-//?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -26,7 +21,7 @@ if (isset($_GET['page'])) {
     </head>
 
     <body>
-        <?php if($page != "index") {
+        <?php if($page != "index" && $page != "register") {
             include "includes/navbar.inc.php";
         } ?>
         <div class="jumbotron">

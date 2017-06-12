@@ -1,7 +1,5 @@
 <?php
 $page = "Registreren";
-require_once('../class/class.user.php');
-include '../private/connection.php';
 $user = new USER();
 
 if($user->is_loggedin()!="") {
@@ -37,7 +35,7 @@ if(isset($_POST['btn-signup'])) {
                 $error[] = "E-mail already taken!";
             } else {
                 if($user->register($uname,$umail,$upass)){
-                    $user->redirect('?page=register.php&joined');
+                    $user->redirect('?page=register&joined');
                 }
             }
         } catch(PDOException $e) {
@@ -63,7 +61,7 @@ if(isset($_POST['btn-signup'])) {
             <div class="container">
                 <div class="signin-form">
                     <div class="container">
-                        <form action="register.inc.php" method="post" class="form-signin">
+                        <form action="index.php?page=register" method="post" class="form-signin">
                             <h2 class="form-signin-heading">Sign Up</h2><hr />
                             <?php
                             if(isset($error)) {
