@@ -77,3 +77,41 @@ li a:hover {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+/*geeft even getallen in de boekenlijst een andere kleur*/
+tr:nth-child(even) {
+    background-color: lightgrey;
+}
+/*info box fix*/
+.info {
+    font-weight: normal;
+    font-size: 14px;
+}
+.info br{
+    display: none;
+}
+.jumbotron p{
+    font-weight: normal;
+    font-size: 14px;
+}
+.info p{
+    display: inline;
+}
+.date {
+    min-width: 80px;
+    text-align: center;
+}
+.jumbotron h2{
+    text-align: center;
+}
+.nav {
+    background-color: #333;
+}
+.menu {
+    width: 80%;
+    margin: auto;
+    background-color: #333;
+}
+.name td{
+    min-height: 41px;
+    max-height: 45px;
+}

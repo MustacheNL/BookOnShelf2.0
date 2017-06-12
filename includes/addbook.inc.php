@@ -56,14 +56,14 @@ if(isset($_GET['msg']) && $_GET['msg'] == "success") {
                             }
                         } else if (isset($_GET['joined'])) {
                             header("refresh:5;url=index.php");
-                            ?>
+//                            ?><!--succes msg-->
                             <span class="mdl-chip mdl-chip--contact">
                                 <span class="mdl-chip__contact mdl-color--green mdl-color-text--white">:D</span>
                                 <span class="mdl-chip__text">Je hebt met succes een boek toegevoegd. <a
                                             href='booklist.php'>here</a>!</span>
                             </span>
                         <?php } ?>
-
+<!--                            fields voor het invullen van de info van het boek.-->
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="sample1" name="txt_bname">
                             <label class="mdl-textfield__label" for="sample1">Boek naam...</label>

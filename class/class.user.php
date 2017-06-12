@@ -12,7 +12,7 @@ class USER {
         return $stmt;
     }
 
-    public function register($fname, $lname, $uname, $umail, $upass)
+    public function register($uname, $umail, $upass)
     {
         try {
             $new_password = password_hash($upass, PASSWORD_DEFAULT);
