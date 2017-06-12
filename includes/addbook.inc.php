@@ -2,11 +2,11 @@
 <?php
 session_start();
 include('class/class.session.php');
-
 $auth_user = new USER();
 $user = new USER();
 $result = $stmt = $auth_user->runQuery("SELECT * FROM books");
 $row = $result->fetch(PDO::FETCH_ASSOC);
+
 
 /* Als er op de knop is gedrukt (submit) */
 if (isset($_POST['btn-signup'])) {
@@ -75,8 +75,14 @@ if (isset($_GET['msg']) && $_GET['msg'] == "success") {
                     <label class="mdl-textfield__label" for="sample1">Boek naam...</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="sample1" name="txt_bauthor">
-                    <label class="mdl-textfield__label" for="sample1">Boek auteur...</label>
+                  <?php echo '<select name="txt_bauthor" id="author">';
+                                 $stmt = $auth_user ->runQuery('Select author from books');
+                                 $stmt->execute();
+                                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    echo "<option value=$row[author]>$row[author]</option>";
+                                }
+                              echo "</select>";// Closing of list box
+                            ?>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input placeholder="YYYY-MM-DD" max="*9l" class="mdl-textfield__input" type="date" id="sample1"
