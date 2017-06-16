@@ -45,6 +45,17 @@ VALUES(:uname, :umail, :upass)");
             echo $e->getMessage();
         }
     }
+    public function addauthor($bauthor) {
+        try {
+            $stmt = $this->conn->prepare("INSERT INTO author(author) 
+                                                           VALUE(:bauthor)");
+            $stmt->bindparam(":bauthor", $bauthor);
+            $stmt->execute();
+            return $stmt;
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 
     public function login($uname, $umail, $upass)
     {

@@ -36,7 +36,7 @@ if (isset($_POST['btn-signup'])) {
 
 /* Als de get bericht is dan weergeeft die dat het gelukt is */
 if (isset($_GET['msg']) && $_GET['msg'] == "success") {
-    echo "<div class=\"alert alert-success\" role=\"alert\">
+    echo "<div class=\"alert alert-success\" style=\"text-align: center\" role=\"alert\">
     <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>
     <span class=\"sr-only\">Success:</span>
     Het boek is succesvol toegevoegd!
@@ -76,7 +76,7 @@ if (isset($_GET['msg']) && $_GET['msg'] == "success") {
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   <?php echo '<select name="txt_bauthor" id="author">';
-                                 $stmt = $auth_user ->runQuery('Select author from books');
+                                 $stmt = $auth_user ->runQuery('Select author from author');
                                  $stmt->execute();
                                     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                     echo "<option value=$row[author]>$row[author]</option>";

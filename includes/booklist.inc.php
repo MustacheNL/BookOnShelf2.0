@@ -20,7 +20,7 @@ $stmt->execute();
 
 /* Succes bericht dat het boek is geleend! */
 if(isset($_GET['msg']) && $_GET['msg'] == "success") {
-    echo "<div class=\"alert alert-success\" role=\"alert\">
+    echo "<div class=\"alert alert-success\" style=\"text-align: center\" role=\"alert\">
     <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>
     <span class=\"sr-only\">Success</span>
     Het boek is succesvol aan je geleend!

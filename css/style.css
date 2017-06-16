@@ -81,6 +81,9 @@ li a:hover {
 tr:nth-child(even) {
     background-color: lightgrey;
 }
+tr:nth-child(odd) {
+    background-color: white;
+}
 /*info box fix*/
 .info {
     font-weight: normal;
