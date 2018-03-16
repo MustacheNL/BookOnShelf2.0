@@ -1,2 +1,2 @@
 # BookOnShelf2.0
-The better version
+Discontinued, will never be updated sadly.
